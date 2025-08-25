@@ -1,39 +1,31 @@
 import React, { useState } from 'react';
 import './App.css';
+import logo from '../src/assets/images/logo_senai.png';
+
+import AdicionarProduto from './components/AdicionarProduto';
+import ListaDeProdutos from './components/ListaDeProduto';
 
 function App() {
-  const [item, setItem] = useState('');
-  const [itens, setItens] = useState(['Feijão', 'Arroz', 'Cenoura']);
+  const [produtos, setProdutos] = useState(['Mouse', 'Teclado', 'Monitor']);
 
-  const adicionarItens = () => {
+  const adicionarUsuario = (nome) => {
+    const produto = nome.trim();
 
-      if (itens.includes(item)) {
-          alert(['A lista já contém esse item. Deseja adicionar mais um?']);
-        return;
-      }
-
-      setItens([...itens, item]);
-      setItem('');
-    };
+    if (produtos.includes(produto)) {
+      alert('O produto já existe!');
+      return;
+    }  
+    setProdutos([...produtos, produto]);
+  };
 
   return (
-    <div className='App'>
-      <h1>Compras</h1>
-      <input
-      type="text"
-      value={item}
-      onChange={(e) => setItem(e.target.value)}
-      placeholder="Digite o produto:"
-      />
-      <button onClick={adicionarItens}>Adicionar</button>
-
+    <div className="App">
+      <img src={logo} className="logo" alt="Logo do Senai" />
+      <h1>Produtos</h1>
+      <AdicionarProduto onAdd={adicionarUsuario} />
       <hr />
-      <h2>Lista de Compras:</h2>
-      <ul>
-      {itens.map((user, index) => (
-        <li key={index}>{user}</li>
-        ))}
-      </ul>
+      <h2>Lista de produtos</h2>
+      <ListaDeProdutos itens={produtos} />
     </div>
   );
 }
