@@ -1,0 +1,11 @@
+/* src\components\InfoCurso\styles.css */
+
+.infocurso h1{
+  color: #3685ec;
+  margin: 10px 0;
+}
+
+.infoCurso p{
+  color: #000000;
+  margin: 5px 0;
+}
